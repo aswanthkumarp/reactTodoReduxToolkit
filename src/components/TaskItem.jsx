@@ -1,12 +1,25 @@
 // src/TaskItem.js
-import React from 'react';
+import React, { useState } from 'react';
 
 const TaskItem = ({ task }) => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
   return (
-    <li>
-      {task.title}
-      {/* You can add buttons for editing and deleting tasks here */}
-    </li>
+    <div>
+      <input
+        type="checkbox"
+        checked={isChecked}
+        onChange={handleCheckboxChange}
+      />
+      <span style={{ textDecoration: isChecked ? 'line-through' : 'none' }}>
+        {task.title}
+      </span>
+    
+    </div>
   );
 };
 

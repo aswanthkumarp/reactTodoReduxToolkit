@@ -26,6 +26,7 @@ const TaskForm = () => {
           value={taskTitle}
           onChange={handleInputChange}
           placeholder="Enter task title"
+          required
         />
       </label>
       <button type="submit">Add Task</button>

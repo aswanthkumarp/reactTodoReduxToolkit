@@ -24,7 +24,7 @@ const TaskList = () => {
   };
 
   return (
-    <ul>
+    <>
       {tasks.map((task) => (
         <li key={task.id}>
           {editedTitle !== '' && task.id === task.id ? (
@@ -47,7 +47,7 @@ const TaskList = () => {
           )}
         </li>
       ))}
-    </ul>
+    </>
   );
 };
 
