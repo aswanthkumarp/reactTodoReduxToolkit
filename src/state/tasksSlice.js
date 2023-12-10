@@ -10,8 +10,7 @@ const taskSlice = createSlice({
     },
     updateTask: (state, action) => {
       const { id, updatedTask } = action.payload;
-      const taskIndex = state.findIndex(task => task.id === id);
-      state[taskIndex] = updatedTask;
+    return state.map(task =>task.id === id ? updatedTask :task)
     },
     deleteTask: (state, action) => {
       return state.filter(task => task.id !== action.payload);
