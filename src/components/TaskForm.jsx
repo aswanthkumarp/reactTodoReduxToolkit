@@ -8,7 +8,7 @@ const TaskForm = () => {
     title: '',
     description: '',
     dueDate: '',
-    priority: '',
+    priority: 'Low',
     status: 'in-progress',
   });
 
@@ -23,56 +23,70 @@ const TaskForm = () => {
       title: '',
       description: '',
       dueDate: '',
-      priority: '',
+      priority: 'Low',
       status: 'in-progress',
     });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <strong>Task Title:</strong>
-        <input
-          type="text"
-          name="title"
-          value={task.title}
-          onChange={handleInputChange}
-          placeholder="Enter task title"
-          required
-        />
-      </label>
-      <label>
-        <strong>Description:</strong>
-        <textarea
-          name="description"
-          value={task.description}
-          onChange={handleInputChange}
-          placeholder="Enter task description"
-        />
-      </label>
-      <label>
-        <strong>Due Date:</strong>
-        <input
-          type="date"
-          name="dueDate"
-          value={task.dueDate}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        <strong>Priority:</strong>
-        <select
-          name="priority"
-          value={task.priority}
-          onChange={handleInputChange}
-        >
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-      </label>
-      <button type="submit">Add Task</button>
-    </form>
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="bg-white border rounded-md p-8 w-full sm:w-96">
+        <h1 className="text-2xl font-bold mb-4">Task Manager</h1>
+        <form onSubmit={handleSubmit}>
+          <label className="block mb-4">
+            <strong>Task Title:</strong>
+            <input
+              className="border rounded w-full p-2 mt-1"
+              type="text"
+              name="title"
+              value={task.title}
+              onChange={handleInputChange}
+              placeholder="Enter task title"
+              required
+            />
+          </label>
+          <label className="block mb-4">
+            <strong>Description:</strong>
+            <textarea
+              className="border rounded w-full p-2 mt-1"
+              name="description"
+              value={task.description}
+              onChange={handleInputChange}
+              placeholder="Enter task description"
+            />
+          </label>
+          <label className="block mb-4">
+            <strong>Due Date:</strong>
+            <input
+              className="border rounded w-full p-2 mt-1"
+              type="date"
+              name="dueDate"
+              value={task.dueDate}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label className="block mb-4">
+            <strong>Priority:</strong>
+            <select
+              className="border rounded w-full p-2 mt-1"
+              name="priority"
+              value={task.priority}
+              onChange={handleInputChange}
+            >
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </label>
+          <button
+            type="submit"
+            className="bg-blue-500 text-white rounded p-2 hover:bg-blue-700"
+          >
+            Add Task
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 

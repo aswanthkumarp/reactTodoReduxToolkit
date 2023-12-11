@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteTask, updateTask } from '../state/tasksSlice';
 import TaskItem from './TaskItem';
 
 const TaskList = () => {
@@ -22,7 +21,6 @@ const TaskList = () => {
     });
   };
 
-  // Sort tasks based on the selected criteria
   const sortedTasks = [...tasks].sort((a, b) => {
     if (sortCriteria.field === 'dueDate') {
       return sortCriteria.order === 'asc'
@@ -30,7 +28,7 @@ const TaskList = () => {
         : new Date(b.dueDate) - new Date(a.dueDate);
     } else if (sortCriteria.field === 'priority') {
       const priorityOrder = { low: 1, medium: 2, high: 3 };
-      return sortCriteria.order === 'asc'
+      return sortCriteria.order === 'desc'
         ? priorityOrder[a.priority] - priorityOrder[b.priority]
         : priorityOrder[b.priority] - priorityOrder[a.priority];
     }
@@ -44,35 +42,42 @@ const TaskList = () => {
   );
 
   return (
-    <div>
-      <div>
-        <label>
-          Sort By:
-          <select
-            value={sortCriteria.field}
-            onChange={(e) => handleSort(e.target.value)}
-          >
-            <option value='dueDate'>Due Date</option>
-            <option value='priority'>Priority</option>
-          </select>
-        </label>
-        <label>
-          Search:
-          <input
-            type='text'
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </label>
+    <div className='container mx-auto my-8 px-4 min-h-screen'>
+      <div className='flex flex-col md:flex-row justify-between items-center mb-4'>
+        <div className='flex space-x-4 mb-2 md:mb-0'>
+          <label className='flex items-center'>
+            Sort By:
+            <select
+              value={sortCriteria.field}
+              onChange={(e) => handleSort(e.target.value)}
+              className='ml-2 p-1 border rounded-md'
+            >
+              <option value='dueDate'>Due Date</option>
+              <option value='priority'>Priority</option>
+            </select>
+          </label>
+        </div>
+
+        <div className='flex space-x-4'>
+          <label className='flex items-center'>
+            Search:
+            <input
+              type='text'
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className='ml-2 p-1 border rounded-md'
+            />
+          </label>
+        </div>
       </div>
 
       {filteredTasks.length === 0 ? (
-        <p>No results found.</p>
+        <p className='text-center text-gray-500'>No results found.</p>
       ) : (
         <ul>
           {filteredTasks.map((task) => (
-            <li key={task.id}>
-              <TaskItem task={task} />
+            <li key={task.id} className='mb-4'>
+              <TaskItem task={task} taskId={task.id} />
             </li>
           ))}
         </ul>
