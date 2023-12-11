@@ -27,8 +27,8 @@ const TaskList = () => {
         ? new Date(a.dueDate) - new Date(b.dueDate)
         : new Date(b.dueDate) - new Date(a.dueDate);
     } else if (sortCriteria.field === 'priority') {
-      const priorityOrder = { low: 1, medium: 2, high: 3 };
-      return sortCriteria.order === 'desc'
+      const priorityOrder = { Low: 1, Medium: 2, High: 3 };
+      return sortCriteria.order === 'asc'
         ? priorityOrder[a.priority] - priorityOrder[b.priority]
         : priorityOrder[b.priority] - priorityOrder[a.priority];
     }
